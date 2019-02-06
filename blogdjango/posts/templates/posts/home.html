@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+{% load static%}
+
+{%block menu%}
+  <nav class="menu">
+    <ul>
+      <li class="active"><a href="{%url 'home' %}">Home</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="{%url 'contact' %}">Contato</a></li>
+    </ul>
+  </nav>
+{%endblock%}
+
+  {% block content%}
+    <section id="posts" class="span-15 append-1">
+      <h1><span>Recent posts</span></h1>
+      <article>
+        {%for post in posts%}
+          <div class="date span-3">{{post.created_at}}</div>
+          <h2><a href="#">{{post.title}}</a></h2>
+          <div class="metadata">
+            <ul>
+              <li>posted by <a href="#">Admin</a></li><li> in <a href="#">{{post.category}}</a></li><li><a href="#">3comments</a></li> 
+            </ul>
+          </div>
+          {%if post.image%}
+              <img src="{{post.image.url}}" alt="" width="589px" height="200px"/>
+          {%else%}
+          <img src="{% static 'images/img_15.jpg' %}" alt="" width="589px" height="200px"/>
+          {%endif%}
+          <p>{{post.article |slice:"0:150"}} ...</p>
+          <div class="more"><a href="{{ post.get_absolute_url }}">Ler mais</a></div>
+      </article>
+      <hr />
+        {%endfor%}
+      <div id="pagination">
+        <a href="#">previous</a> <a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a>...<a href="#">22</a><a href="#">next</a>
+      </div>
+    </section>
+<!--################################################-->
+{%endblock%}
