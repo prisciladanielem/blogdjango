@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
 
+from blogdjango.posts.forms import Contact
+
 def home(request):
     posts = Post.objects.all()
     template_name = 'posts/home.html'
@@ -20,4 +22,6 @@ def details(request,slug):
 
 def contact(request):
     template_name = 'contact.html'
-    return render(request, template_name)
+    form = Contact()
+    context = {'form' : form }
+    return render(request, template_name, context)
