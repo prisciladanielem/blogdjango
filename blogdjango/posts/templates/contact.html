@@ -1,4 +1,5 @@
 {%extends "base.html"%}
+
 {%block menu%}
 <nav class="menu">
     <ul>
@@ -10,6 +11,7 @@
     </ul>
 </nav>
 {%endblock%}
+
 {%block content%}
     <section id="posts" class="span-15 append-1">
         <h1><span>Fale conosco</span></h1>
@@ -20,67 +22,20 @@
                 <li>Twitter: <a href="https://twitter.com/">@blogdjango</a></li>
             </ul><br/>
             <h3><span>Fale conosco preenchendo o formulário</span></h3>
-        <form action="#">
+        <form action="#" class="pure-form pure-form-aligned" method="POST">
             {% csrf_token %}
             <fieldset>
                 {%for field in form%}
-                <div>
+                <div class="pure-control-group">
                     {{ field.label_tag }}
                     {{ field }}
                 </div>
                 {%endfor%}
-                <button type="submit">Enviar</button>
+                <div class="pure-controls">
+                    <button  class="pure-button" type="submit">Enviar</button>
                 </div>
+               
             </fieldset>
         </form>
     </section>
-
-<!--################################################-->
-    <aside class="span-8 last right clearfix">
-        <h2><span>blog categories</span></h2>
-        <ul>
-            <li>
-                <a href="#">web design</a></li>
-            <li>
-                <a href="#">photoshop</a></li>
-            <li>
-                <a href="#">html5 & css3</a></li>
-            <li>
-                <a href="#">web application</a></li>
-            <li>
-                <a href="#">SEO</a></li>
-        </ul>
-        <h2><span>Recent posts</span></h2>
-        <img src="images/rp_img.jpg" width="70" height="64" alt="alt" class="span-2">
-        <h3>
-            <a href="#">first post</a></h3>
-        <p>takimata sanctus est Lorem ipsum dolor sit amet orem ipsum dolor</p>
-        <p class="date">12 March at 10:10 am</p>
-        <hr />
-        <img src="images/rp_img.jpg" width="70" height="64" alt="alt" class="span-2">
-        <h3>
-            <a href="#">first post</a></h3>
-        <p>takimata sanctus est Lorem ipsum dolor sit amet orem ipsum dolor</p>
-        <p class="date">12 March at 10:10 am</p>
-        <hr />
-        <img src="images/rp_img.jpg" width="70" height="64" alt="alt" class="span-2">
-        <h3>
-            <a href="#">first post</a></h3>
-        <p>takimata sanctus est Lorem ipsum dolor sit amet orem ipsum dolor</p>
-        <p class="date">12 March at 10:10 am</p>
-        <hr />
-        <h2><span>Archive</span></h2>
-        <ul>
-            <li>
-                <a href="#">March 2012</a></li>
-            <li>
-                <a href="#">April 2012</a></li>
-            <li>
-                <a href="#">May 2012</a></li>
-            <li>
-                <a href="#">June 2012</a></li>
-            <li>
-                <a href="#">July 2012</a></li></ul>
-    </aside>
-</div>
 {%endblock%}
