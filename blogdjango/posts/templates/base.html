@@ -6,7 +6,7 @@
         <title>Blog do Django</title>
         <meta name="description" content="A free template from http://ws-templates.com">
         <meta name="keywords" content="keyword1,keyword2"/>
-
+         <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
         <link  href="{% static 'css/screen.css' %}" media="screen" rel="stylesheet"/>
         <link  href="{% static 'css/style.css' %}" media="screen" rel="stylesheet"/>
     </head>
@@ -26,8 +26,54 @@
 {%block menu%} {%endblock%}
 <div id="content" class="clearfix content">
     {%block content%} {%endblock%}
+
+       <aside class="span-8 last right clearfix">
+        <h2><span>blog categories</span></h2>
+        <ul>
+            <li>
+                <a href="#">web design</a></li>
+            <li>
+                <a href="#">photoshop</a></li>
+            <li>
+                <a href="#">html5 & css3</a></li>
+            <li>
+                <a href="#">web application</a></li>
+            <li>
+                <a href="#">SEO</a></li>
+        </ul>
+        <h2><span>Recent posts</span></h2>
+        <div> </div>
+        {%for post in posts|slice:":4"%}
+            {%if post.image%}
+            <img src="{{post.image.url}}" width="70" height="64" alt="alt" class="span-2">
+            {%else%}
+            <img src="{% static 'images/img_15.jpg' %}" width="70" height="64" alt="alt" class="span-2">
+            {%endif%}
+            <h3>
+                <a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+                
+            <p>{{post.article | slice:"0:50"}}</p>
+            <p class="date">{{ post.created }}</p>
+            <hr />
+        {%endfor%}
+        <hr />
+        <h2><span>Archive</span></h2>
+        <ul>
+            <li>
+                <a href="#">March 2012</a></li>
+            <li>
+                <a href="#">April 2012</a></li>
+            <li>
+                <a href="#">May 2012</a></li>
+            <li>
+                <a href="#">June 2012</a></li>
+            <li>
+                <a href="#">July 2012</a></li></ul>
+    </aside>
+
 </div>
 </div>
+
 <!--################################################-->
 <footer class="clearfix">
     <div class="container"><div class="about span-6 append-1">
@@ -63,3 +109,10 @@
 </footer>
 </body>
 </html>
+
+
+{% if athlete_list|length > 1 %}
+   Team: {% for athlete in athlete_list %} ... {% endfor %}
+{% else %}
+   Athlete: {{ athlete_list.0.name }}
+{% endif %}
