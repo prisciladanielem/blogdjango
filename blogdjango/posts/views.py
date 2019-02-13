@@ -12,16 +12,29 @@ def home(request):
     }
     return render(request,template_name,context)
 
+def base(request):
+    posts = Post.objects.all()
+    template_name = 'base.html'
+    context = {
+        'posts':posts
+    }
+    return render(request,template_name,context)
+
 def details(request,slug):
     post = get_object_or_404(Post,slug=slug)
+    posts = Post.objects.all()
     context = {
-        'post':post
+        'post':post,
+        'posts':posts
     }
     template_name = 'posts/details.html'
     return render(request,template_name, context)
 
 def contact(request):
+    posts = Post.objects.all()
     template_name = 'contact.html'
     form = Contact()
-    context = {'form' : form }
+    context = {'form' : form,
+                'posts':posts }
+
     return render(request, template_name, context)
