@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blogdjango.apps.core',
-    'blogdjango.apps.posts'
+    'blogdjango.apps.posts',
+    'blogdjango.apps.accounts'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,8 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'blogdjango','media') #Variavel de imagem
 MEDIA_URL = '/media/'
+
+#Auth
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
