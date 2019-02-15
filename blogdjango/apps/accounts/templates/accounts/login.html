@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{%block menu%}
+<nav class="menu">
+  <ul>
+    <li><a href="{%url 'home' %}">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="{%url 'contact' %}">Contato</a></li>
+  </ul>
+</nav>
+{%endblock%}
+
+{%block content%}
+  <section id="posts" class="span-15 append-1">
+    <h1><span>Login</span></h1>
+    <h4>Preencha os dados abaixo para entrar.</h4>
+    <form action="#" class="pure-form pure-form-aligned" method="POST">
+    {% csrf_token %}
+      <fieldset>
+      {{ field.non_field_errors }}
+      {%for field in form%}
+        <div class="pure-control-group">
+          {{ field.label_tag }}
+          {{ field }}
+          {{ field.errors }}
+        </div>
+        {%endfor%}
+        <div class="pure-controls">
+          <button  class="pure-button" type="submit">Entrar</button>
+        </div>
+      </fieldset>
+    </form>
+    <ul>
+      <li>Ainda não é cadastrado?</li>
+      <li><a href="{%url 'register'%}">Cadastre-se</a></li>
+    </ul><br/>
+  </section>
+{% endblock %}
