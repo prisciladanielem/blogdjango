@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block menu %}
+<nav class="menu">
+  <ul>
+    <li><a href="{%url 'home' %}">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="{%url 'contact' %}">Contato</a></li>
+  </ul>
+</nav>
+{%endblock%}
+
+{%block content%}
+  <section id="posts" class="span-15 append-1">
+    <h1><span>Editar conta</span></h1>
+    <form action="#" class="pure-form pure-form-aligned" method="POST">
+    {% csrf_token %}
+      <fieldset>
+        <div class="pure-control-group">
+          <p style="font-size:14px">Imagem atual da conta:</p>
+          {%if user.image%}
+            <img src="{{ user.image.url }}" width="150" height="150" alt="">
+          {%else%}
+            <img src="{% static 'img/vaquinha.jpg'%}" width="150" height="150" alt="">
+          {%endif%}
+        </div>
+        {{ field.non_field_errors }}
+        {%for field in form%}
+          <div class="pure-control-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {{ field.errors }}
+          </div>
+          {%endfor%}
+          <div class="pure-controls">
+            <button  class="pure-button" type="submit">Salvar</button>
+          </div>
+      </fieldset>
+    </form>
+  </section>
+{% endblock %}

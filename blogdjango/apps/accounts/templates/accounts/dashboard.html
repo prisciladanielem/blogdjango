@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block menu %}
+<nav class="menu">
+  <ul>
+    <li><a href="{%url 'home' %}">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="{%url 'contact' %}">Contato</a></li>
+  </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+  <h1 class="append-1 span-15 "><span>Meu painel</span></h1>
+  <div class="pure-u-1-2 span-15">
+    <div class="pure-menu pure-menu-open"> 
+      <ul class="ajusteLetra">
+        <li class="pure-menu-heading">Posts</li>
+        <li><a href="{% url 'show_posts' %}"><i class="fas fa-pencil-alt"></i> Meus posts</a></li>
+         <li><a href="{% url 'new_post' %}"><i class="fas fa-plus"></i> Novo Post</a></li>
+        <li class="pure-menu-heading"> Minha conta </li>
+        <li>
+          <a href="{% url 'edit' %}"> 
+            <i class="fas fa-cog"></i> Editar conta
+          </a>
+        </li>
+        <li>
+          <a href="#"> 
+            <i class="fas fa-lock"></i> Editar senha 
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
