@@ -15,14 +15,14 @@
 
   {% block content%}
     <section id="posts" class="span-15 append-1">
-      <h1><span>Recent posts</span></h1>
+      <h1><span>Posts recentes</span></h1>
+      {%for post in posts%}
       <article>
-        {%for post in posts%}
           <div class="date span-3">{{post.created_at}}</div>
-          <h2><a href="#">{{post.title}}</a></h2>
+          <h2><a href="{{ post.get_absolute_url }}">{{post.title}}</a></h2>
           <div class="metadata">
             <ul>
-              <li>posted by <a href="#">Admin</a></li><li> in <a href="#">{{post.category}}</a></li><li><a href="#">3comments</a></li> 
+              <li>postado por <a href="#">{{post.user.name}}</a></li><li> in <a href="#">{{post.category}}</a></li><li><a href="#">3comments</a></li> 
             </ul>
           </div>
           {%if post.image%}
@@ -34,6 +34,8 @@
           <div class="more"><a href="{{ post.get_absolute_url }}">Ler mais</a></div>
       </article>
       <hr />
+      {% empty %}
+      <h3 class="text-center">Não existem posts no blog ainda!</h3>
         {%endfor%}
       <div id="pagination">
         <a href="#">previous</a> <a href="#">1</a><a href="#" class="current">2</a><a href="#">3</a>...<a href="#">22</a><a href="#">next</a>
