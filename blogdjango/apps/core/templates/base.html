@@ -4,28 +4,47 @@
   <head>
     <meta charset="utf-8">
     <title>Blog do Django</title>
-    <meta name="description" content="A free template from http://ws-templates.com">
     <meta name="keywords" content="keyword1,keyword2"/>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link  href="{% static 'css/screen.css' %}" media="screen" rel="stylesheet"/>
     <link  href="{% static 'css/style.css' %}" media="screen" rel="stylesheet"/>
   </head>
 <body>
-
-  <div id="uppermenu">
-    <span class="container">tel : 00000000 | email : contact@domain.com</span></div>
-    <div class="container"><!--centers the content between from header to footer-->
-      <header  class="clearfix">
-        <h1 class="left"><span>Sera</span>blog</h1>
-        <form action="#" class="right" method="post">
-          <input class="span-6 last" type="text" name="searchField" placeholder="search" />
-        </form>
-      </header>
+<div id="uppermenu"><span class="container">
+  {% if user.is_authenticated %}
+  <h3 class="right color"><a href="{% url 'logout' %}">Sair</a></h3> 
+  <h3 class="right color"><a href="{% url 'dashboard' %}">Meu painel</a></h3>
+    <p class="left"> Bem-vindo {{ user.name }}</p>
+  {%  else %}
+    <a class="pure-button" href="{% url 'login' %}">Login</a>
+    <a class="pure-button" href="{% url 'register' %}">Cadastre-se</a>
+  {% endif %}
+</span></div>
+<div class="container">
+  <!--centers the content between from header to footer-->
+  <header  class="clearfix">
+    <h1 class="left"><span>Sera</span>blog</h1>
+    <form action="#" class="right" method="post">
+      <input class="span-6 last" type="text" name="searchField" placeholder="search">
+    </form>
+  </header>
+          {% if messages %}
+          <div class="pure-g-r content-ribbon">
+            <aside class="pure-u-1 box">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </aside>
+          </div>
+        {% endif %}
       {%block menu%} {%endblock%}
       <div id="content" class="clearfix content">
-       {%block content%} {%endblock%}
+       {%block content%}
+
+       {%endblock%}
         <aside class="span-8 last right clearfix">
-          <h2><span>blog categories</span></h2>
+          <h2><span>Categorias do blog</span></h2>
           <ul>
             <li><a href="#">web design</a></li>
             <li><a href="#">photoshop</a></li>
@@ -33,7 +52,7 @@
             <li><a href="#">web application</a></li>
             <li><a href="#">SEO</a></li>
           </ul>
-          <h2><span>Recent posts</span></h2>
+          <h2><span>Posts recentes</span></h2>
           {%for post in posts|slice:":4"%}
             {%if post.image%}
               <img src="{{post.image.url}}" width="70" height="64" alt="alt" class="span-2">
@@ -44,6 +63,8 @@
             <p>{{post.article | slice:"0:50"}}</p>
             <p class="date">{{ post.created }}</p>
             <hr />
+            {% empty %}
+            <h4>Não existem posts no blog ainda!</h4>
           {%endfor%}
           <hr />
           <h2><span>Archive</span></h2>
