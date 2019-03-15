@@ -66,6 +66,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+         'libraries':{
+            'posts_recents': 'blogdjango.apps.core.templatetags.posts_recents',
+
+            }
         },
     },
 ]
