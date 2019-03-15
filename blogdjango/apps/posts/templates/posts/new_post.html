@@ -15,7 +15,7 @@
 {%block content%}
   <section id="posts" class="span-15 append-1">
     <h1 class="text-center"><span>Novo post</span></h1>
-    <form action="#" class="pure-form pure-form-aligned" method="POST">
+    <form action="#" class="pure-form pure-form-aligned" method="POST" enctype="multipart/form-data" >
     {% csrf_token %}
       <fieldset>
       {{ field.non_field_errors }}
@@ -33,3 +33,5 @@
     </form>
   </section>
 {% endblock %}
+
+<!-- enctype="multipart/form-data" adicionar ao form sempre que fo realizar upload de imagem-->
