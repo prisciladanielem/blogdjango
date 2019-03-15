@@ -1,0 +1,15 @@
+{% load static %}
+
+          {%for post in posts|slice:":4"%}
+            {%if post.image%}
+              <img src="{{post.image.url}}" width="70" height="64" alt="alt" class="span-2">
+            {%else%}
+              <img src="{% static 'images/img_15.jpg' %}" width="70" height="64" alt="alt" class="span-2">
+            {%endif%}
+            <h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+            <p>{{post.article | slice:"0:50"}}</p>
+            <p class="date">{{ post.created }}</p>
+            <hr />
+            {% empty %}
+            <h4>Não existem posts no blog ainda!</h4>
+          {%endfor%}
