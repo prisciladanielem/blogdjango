@@ -16,7 +16,7 @@
   <section id="posts" class="span-15 append-1">
     <h1 class="text-center"><span>Cadastre-se</span></h1>
     <h4>Informe seus dados pessoais para concluir o cadastro</h4>
-    <form action="#" class="pure-form pure-form-aligned" method="POST">
+    <form action="#" class="pure-form pure-form-aligned" method="POST" enctype="multipart/form-data" >
     {% csrf_token %}
       <fieldset>
       {{ field.non_field_errors }}
