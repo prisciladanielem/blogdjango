@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from blogdjango.apps.accounts.forms import RegisterForm, EditAccountForm
-from django.contrib.auth import authenticate, login, get_user_model
+
 from django.contrib import messages
 
+from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+
+from blogdjango.apps.accounts.forms import RegisterForm, EditAccountForm
 
 User = get_user_model()
 
@@ -43,3 +46,18 @@ def edit(request):
         form = EditAccountForm(instance=request.user) # se não for post, formulaŕio vazio
     context['form'] = form
     return render(request, template_name, context) 
+
+@login_required
+def edit_password(request):
+    template_name = 'accounts/edit_password.html'
+    context = {}
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Senha alterada com sucesso!')
+            return redirect('dashboard')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    context['form'] = form
+    return render(request, template_name, context)

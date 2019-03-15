@@ -3,7 +3,6 @@ from django.http import HttpResponse
 
 from blogdjango.apps.posts.models import Post
 from blogdjango.apps.accounts.forms import PostForm
-from .forms import EditPostForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
