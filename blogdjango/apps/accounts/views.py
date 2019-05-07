@@ -45,7 +45,7 @@ def edit(request):
     else:
         form = EditAccountForm(instance=request.user) # se não for post, formulaŕio vazio
     context['form'] = form
-    return render(request, template_name, context) 
+    return render(request, template_name, context)
 
 @login_required
 def edit_password(request):
