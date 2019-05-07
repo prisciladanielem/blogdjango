@@ -27,10 +27,12 @@
 <div class="container">
   <!--centers the content between from header to footer-->
   <header  class="clearfix">
-    <h1 class="left"><span>Sera</span>blog</h1>
-    <form action="#" class="right" method="post">
-      <input class="span-6 last" type="text" name="searchField" placeholder="search">
-    </form>
+    <h1 class="left"><span>Django</span>blog</h1>
+    <form class="pure-form right" action="#" method="post">
+    <input type="text" class="pure-input-rounded" placeholder="Pesquisa">
+    <button type="submit" class="pure-button" placeholder="search">
+    <i class="fas fa-search"></i></button>
+</form>
   </header>
           {% if messages %}
           <div class="pure-g-r content-ribbon">
@@ -49,15 +51,13 @@
         <aside class="span-8 last right clearfix">
           <h2><span>Categorias do blog</span></h2>
           <ul>
-            <li><a href="#">web design</a></li>
-            <li><a href="#">photoshop</a></li>
-            <li><a href="#">html5 & css3</a></li>
-            <li><a href="#">web application</a></li>
-            <li><a href="#">SEO</a></li>
+            {%for c in categories%}
+            <li><a href="#">{{c.category}}</a></li>
+            {% endfor %}
           </ul>
           <h2><span>Posts recentes</span></h2>
 
-          {% postagens_recentes post%}
+          {% postagens_recentes post %}
 
           <hr />
           <h2><span>Archive</span></h2>
@@ -74,8 +74,8 @@
   <footer class="clearfix">
     <div class="container">
       <div class="about span-6 append-1">
-        <h3>About Serablog</h3>
-          <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet orem ipsum dolor sit amet, consetetur sadipscing eli</p>
+        <h3>Sobre o Djangoblog</h3>
+          <p>O Djangoblog foi criado com o objetivo de colocar em prática os conhecimentos adquiridos através do curso de Django e Python para a Web ministrado pelo Professor Gileno. O Djangoblog foi criado exclusivamente para o aprendizado Python e Django. Utilizei a versão 2.0 do Django e a versão 3.6 do Python para realizar a parte de backend do projeto.</p>
       </div>
       <div id="tweets" class="span-6 append-1">
         <h3>Latest tweets</h3>
@@ -106,4 +106,3 @@
   </footer>
 </body>
 </html>
-
