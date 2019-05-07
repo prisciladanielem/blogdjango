@@ -6,9 +6,11 @@ from blogdjango.apps.posts.forms import Contact
 
 def base(request):
     posts_recents = Post.objects.all()
+    categories = Post.objects.all().order_by('category')
     template_name = 'base.html'
     context = {
-        'posts_recents':posts_recents
+        'posts_recents':posts_recents,
+        'categories':categories
     }
     return render(request,template_name,context)
 
