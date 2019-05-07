@@ -31,7 +31,7 @@
           <img src="{% static 'images/img_15.jpg' %}" alt="" width="589px" height="200px"/>
           {%endif%}
           <p>{{post.article |slice:"0:150"}} ...</p>
-          <div class="more"><a href="{{ post.get_absolute_url }}">Ler mais</a></div>
+          <a class="button-warning pure-button" style ="color:white;  "href="{{ post.get_absolute_url }}">Ler mais</a>
       </article>
       <hr />
       {% empty %}
